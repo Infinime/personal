@@ -1,0 +1,63 @@
+<ImageButton@Button>:
+    #background_normal: ''
+    source: None
+    Image:
+        source: root.source
+        pos: root.pos
+        size: root.size
+
+FloatLayout:
+    ActionBar:
+        pos_hint: {'top':1}
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                title:'Map' if carousel.current_slide==carousel.slides[1] else 'Search' if carousel.current_slide==carousel.slides[0] else 'Friends'
+                with_previous: True
+            ActionOverflow:
+                dropdown_width:300
+                ActionButton:
+                    text:'Settings'
+                ActionButton:
+                    text:'FAQ'
+                ActionButton:
+                    text:'Contact Us'
+                ActionButton:
+                    text:'About Us'
+    Carousel:
+        size_hint:1,0.95
+        id:carousel
+        FloatLayout:
+            BoxLayout:
+                orientation:'horizontal'
+                pos_hint:{"x":0.025,"y":0.9}
+                size_hint:0.95,0.05
+                TextInput:
+                    multiline: False
+                    size_hint:0.85,1
+                    on_text_validate:
+                        for x in range(40):scroll.add_widget(kivy.uix.button.Button(text=x))
+                ImageButton:
+                    source:'C:/Users/hp/Documents/Coding/Codes/Python/Icons/search.png'
+                    size_hint:0.15,1
+            ScrollView:
+                id: scroll
+                size_hint: (0.95, 0.75)
+
+        Label:
+            text:'Friends'
+    BoxLayout:
+        size_hint:1,0.1
+        ImageButton:
+            source:'C:/Users/hp/Documents/Coding/Codes/Python/Icons/loupe.png'
+            on_release:
+                carousel.load_slide(carousel.slides[0])
+        ImageButton:
+            source:'C:/Users/hp/Documents/Coding/Codes/Python/icons/placeholder.png'
+            on_release:
+                carousel.load_slide(carousel.slides[1])
+        ImageButton:
+            source:'C:/Users/hp/Documents/Coding/Codes/Python/icons/Support.png'
+            on_release:
+                carousel.load_slide(carousel.slides[2])
+            

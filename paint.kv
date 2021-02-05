@@ -1,0 +1,18 @@
+main:
+<main>:
+    MDBackdrop:
+        id: backdrop
+        #on_open: print("on_open")
+        #on_close: print("on_close")
+        left_action_items: [['menu', lambda x: self.open()]]
+        title: "Squire"
+        header_text: "Menu:"
+
+        MDBackdropBackLayer:
+            id: backlayer
+            Label:
+                text: 'bliueuur'
+
+        MDBackdropFrontLayer:
+            backdrop: backdrop
+            backlayer: backlayer
